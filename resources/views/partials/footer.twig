@@ -1,0 +1,104 @@
+<footer class="container">
+	<div class="row footer-links d-none d-md-flex">
+
+		{% set menus = entries('navigation', 'menus').get() %}
+		{% for menu in menus %}
+			{% set footerLinks = links(menu.slug.value).get() %}
+			{% if footerLinks %}
+				<div class="col-3 mb-4">
+					<h2>{{ menu.name }}</h2>
+					<ul>
+						{% for link in footerLinks %}
+							<li>
+								<a href="{{ link.url }}">{{ link.title }}</a>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			{% endif %}
+		{% endfor %}
+
+
+		{#        {% set pop1Links = links('popular_pages_part_1').get() %}#}
+	{#        {% set pop2Links = links('popular_pages_part_2').get() %}#}
+		{#        {% set pop3Links = links('popular_pages_part_3').get() %}#}
+
+		{#        {% if pop1Links or pop2Links or pop3Links %}#}
+		{#            <div class="col-6 row">#}
+		{#                <div class="col-12">#}
+		{#                    <h2>{{ trans('visiosoft.theme.uzicani::field.popular_pages') }}</h2>#}
+		{#                </div>#}
+		{#                <div class="col-4">#}
+		{#                    <ul>#}
+		{#                        {% for link in links('popular_pages_part_1').get() %}#}
+		{#                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>#}
+		{#                        {% endfor %}#}
+		{#                    </ul>#}
+		{#                </div>#}
+		{#                <div class="col-4">#}
+		{#                    <ul>#}
+		{#                        {% for link in links('popular_pages_part_2').get() %}#}
+		{#                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>#}
+		{#                        {% endfor %}#}
+		{#                    </ul>#}
+		{#                </div>#}
+		{#                <div class="col-4">#}
+		{#                    <ul>#}
+		{#                        {% for link in links('popular_pages_part_3').get() %}#}
+		{#                            <li><a href="{{ link.url }}">{{ link.title }}</a></li>#}
+		{#                        {% endfor %}#}
+		{#                    </ul>#}
+		{#                </div>#}
+		{#            </div>#}
+		{#        {% endif %}#}
+	</div>
+	<hr class="d-none d-md-block">
+	<div class="socials-wrapper">
+		<div class="d-flex flex-column flex-md-row align-items-center align-items-md-start">
+			<h2 class="flex-shrink-0">{{ trans('visiosoft.theme.uzicani::field.follow_us') }}</h2>
+			<div class="social-media-list d-flex w-100 justify-content-center justify-content-md-start flex-wrap">
+				<div class="d-flex justify-content-center">
+					<a href="{{ setting_value('visiosoft.theme.uzicani::facebook') }}" class="link-unstyled d-flex align-items-center justify-content-center rounded-circle">
+						<img src="{{ img('visiosoft.theme.uzicani::images/facebook.svg').url }}" alt="facebook icon">
+					</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="{{ setting_value('visiosoft.theme.uzicani::twitter') }}" class="link-unstyled d-flex align-items-center justify-content-center rounded-circle">
+						<img src="{{ img('visiosoft.theme.uzicani::images/twitter.svg').url }}" alt="twitter icon">
+					</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="{{ setting_value('visiosoft.theme.uzicani::instagram') }}" class="link-unstyled d-flex align-items-center justify-content-center rounded-circle">
+						<img src="{{ img('visiosoft.theme.uzicani::images/instagram.svg').url }}" alt="instagram icon">
+					</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="{{ setting_value('visiosoft.theme.uzicani::youtube') }}" class="link-unstyled d-flex align-items-center justify-content-center rounded-circle">
+						<img src="{{ img('visiosoft.theme.uzicani::images/youtube.svg').url }}" alt="youtube icon">
+					</a>
+				</div>
+				<div class="d-flex justify-content-center">
+					<a href="{{ setting_value('visiosoft.theme.uzicani::linked_in') }}" class="link-unstyled d-flex align-items-center justify-content-center rounded-circle">
+						<img src="{{ img('visiosoft.theme.uzicani::images/linkedin.svg').url }}" alt="linked in icon">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="copy-write-container d-flex justify-content-center justify-content-md-between align-items-center">
+		<p>{{ setting_value('visiosoft.theme.uzicani::copyright_text_footer') }}</p>
+		<div class="btn-group dropup d-none d-md-inline-flex">
+			<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				{{ trans('streams::locale.' ~ config('app.locale') ~ '.name') }}
+			</button>
+			<div class="dropdown-menu dropdown-menu-right">
+				{% for iso in config('streams::locales.enabled') %}
+					<a class="dropdown-item" href="#" onclick="window.location = '?_locale={{ iso }}';">
+						{{ trans('streams::locale.' ~ iso ~ '.name') }}
+					</a>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</footer>

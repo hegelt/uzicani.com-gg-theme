@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+	<head>
+		{% include "visiosoft.theme.sahibinden::partials/metadata" %}
+		{% block styles %}{% endblock %}
+		{{ asset_style('visiosoft.theme.uzicani::css/swiper.min.css') }}
+		{{ asset_style('visiosoft.theme.uzicani::css/style.scss') }}
+	</head>
+	<body id="gg-body">
+
+		{% include "theme::partials/header" %}
+
+		<div class="container main-container">
+			{% include "visiosoft.theme.base::partials/messages" %}
+
+			{% if (request_path() == '/') %}
+				{% include "theme::index/default" %}
+			{% else %}
+				{% block content %}{% endblock %}
+			{% endif %}
+		</div>
+
+		<div class="horizontal-menu-mask" style="display: none"></div>
+
+		{% include "theme::partials/footer" %}
+		{{ asset_add('scripts.js','visiosoft.theme.uzicani::js/swiper.min.js') }}
+		{{ asset_add('scripts.js','visiosoft.theme.uzicani::js/script.js') }}
+		{% include "visiosoft.theme.sahibinden::partials/assets" %}
+
+	</body>
+</html>

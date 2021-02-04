@@ -1,0 +1,160 @@
+<div class="main-body pt-2 pt-md-3 position-relative">
+	<section class="container homepage-banner-section">
+		{{ addBlock('stories')|raw }}
+		<div class="homepage-banner-container overflow-hidden">
+			<div class="slider-inner-container d-flex align-items-center justify-content-center position-relative">
+				{% for homepageBanner in template.page.homepage_banner %}
+					<div class="my-slides gg-fade w-100 h-100">
+						<a href="{{ homepageBanner.link }}">
+							<picture>
+								<source class="w-100 h-100" media="(min-width: 768px)" srcset="{{ homepageBanner.large_image.url }}">
+								<img class="w-100 h-100" src="{{ homepageBanner.medium_image.url }}">
+							</picture>
+						</a>
+					</div>
+				{% endfor %}
+
+				<i class="gg-slider-button-prev" onclick="plusSlides(-1)"></i>
+				<i class="gg-slider-button-next" onclick="plusSlides(1)"></i>
+
+				<div class="mobile-slider-bullet-container d-flex position-absolute">
+					{% for homepageBanner in template.page.homepage_banner %}
+						<div class="mobile-slider-bullet-item">
+							<div style="background: white; width: 0" class="h-100 progressBar"></div>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<div class="slider-bullet-container d-none d-md-flex justify-content-center align-items-center bg-white">
+				{% for homepageBanner in template.page.homepage_banner %}
+					<div class="gg-slider-thumbnail" style="background-image: url('{{ homepageBanner.thumbnail_image.url }}');"></div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<section class="container new-banner-area">
+		<div class="articles d-flex overflow-auto">
+			{% for showcase in template.page.showcase %}
+				<a href="{{ showcase.link }}" class="link-unstyled article position-relative overflow-hidden">
+					<div class="article-bg h-100" style="background-image: url('{{ showcase.background.url }}')">
+						<p>{{ showcase.title }}</p>
+					</div>
+					<div class="article-shadow position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
+						<img src="{{ img('visiosoft.theme.uzicani::images/next.svg').url }}" alt="right arrow">
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</section>
+
+	{% set latestAds = entries('advs').latestAdvs() %}
+	{% if count(latestAds) %}
+		<section class="container daily-deal-container">
+			<div class="cover-frame pt-3 pb-4 pt-md-4 bg-white">
+				<div class="cover-content-title d-flex align-items-center justify-content-between px-4 mb-3 mb-md-4">
+					<h3 class="mb-0">{{ trans('visiosoft.theme.uzicani::field.latest_ads') }}</h3>
+					<a href="{{ url_route('visiosoft.module.advs::list') }}" class="link-unstyled d-flex align-items-center">
+						<p class="d-none d-sm-block">{{ trans('visiosoft.theme.uzicani::field.see_more_deals') }}</p>
+						<img src="{{ img('visiosoft.theme.uzicani::images/right.svg').url }}" class="ml-2" alt="right arrow">
+					</a>
+				</div>
+
+				<div class="swiper-container daily-deal-slider d-flex align-items-center px-4">
+					<div class="swiper-wrapper">
+						{% for latestAdv in latestAds %}
+							<a href="{{ latestAdv.detail_url }}" class="link-unstyled swiper-slide deal-slider-item">
+								<div class="deal-img" style="background-image: url('{{ latestAdv.cover_photo }}')"></div>
+								<p class="deal-name">{{ latestAdv.name }}</p>
+								<p class="deal-tag">{{ trans('visiosoft.theme.uzicani::field.latest_ad') }}</p>
+								<p class="deal-price">{{ currency_format(latestAdv.price,latestAdv.currency)  }}</p>
+								{#                            <div class="deal-delivery d-flex">#}
+							{#                                <img src="{{ img('visiosoft.theme.uzicani::images/delivery.svg').url }}"#}
+								{#                                     class="mr-2 d-none d-md-block" alt="truck icon">#}
+								{#                                <p>Free - Same Day Shipping</p>#}
+								{#                            </div>#}
+							</a>
+						{% endfor %}
+					</div>
+					<i class="gg-slider-button-prev"></i>
+					<i class="gg-slider-button-next"></i>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+	<section class="container your-choices-container">
+		<div class="cover-frame pt-3 pb-4 pt-md-4 bg-white">
+			<div class="cover-content-title px-4 mb-3">
+				<h3 class="mb-0">{{ trans('visiosoft.theme.uzicani::field.our_choices_for_you') }}</h3>
+			</div>
+
+			<div class="your-choices-wrapper d-flex flex-column flex-lg-row">
+				<div class="nav flex-nowrap category-list px-4 pr-lg-3 pl-lg-0 d-flex d-lg-block pt-lg-3" role="tablist" aria-orientation="vertical">
+					{% for category in setting_value('visiosoft.theme.uzicani::choices_tabs_categories') %}
+						{% set categoryEntry = entries('cats', 'category').find(category) %}
+						<a class="d-flex link-unstyled{{ loop.first ? ' active' }}" data-toggle="pill" href="#v-pills-{{ categoryEntry.slug }}" role="tab" aria-selected="true" {{ not loop.first ? 'id=tab' ~ category }} aria-controls="v-pills-{{ categoryEntry.slug }}">
+							<span class="category-border d-none d-lg-block"></span>
+							<p class="text-truncate flex-fill">{{ categoryEntry.name }}</p>
+						</a>
+					{% endfor %}
+				</div>
+
+				<div class="your-choices-tabs tab-content">
+					{% for category in setting_value('visiosoft.theme.uzicani::choices_tabs_categories') %}
+						{% set categoryEntry = entries('cats', 'category').find(category) %}
+						<div class="swiper-container align-items-center px-4 your-choices-tab tab-pane{{ loop.first ? ' active' }}" id="v-pills-{{ categoryEntry.slug }}" role="tabpanel" aria-labelledby="v-pills-{{ categoryEntry.slug }}-tab">
+							<div class="swiper-wrapper your-choices-slider">
+								{% if loop.first %}
+									{% for catAdv in entries('advs').findAdsByCategoryId(category) %}
+										<a href="{{ url_route('adv_detail', [catAdv.id]) }}" class="link-unstyled swiper-slide deal-slider-item">
+											<div class="deal-img" style="background-image: url('{{ catAdv.cover_photo }}')"></div>
+											<p class="deal-name">{{ catAdv.name }}</p>
+											<p class="deal-price">{{ catAdv.price }}
+												{{ catAdv.currency }}</p>
+											{#                                    <div class="deal-delivery d-flex">#}
+										{#                                        <img src="images/delivery.svg" class="mr-2 d-none d-md-block" alt="truck icon">#}
+											{#                                        <p>Free - Same Day Shipping</p>#}
+											{#                                    </div>#}
+										</a>
+									{% endfor %}
+								{% endif %}
+							</div>
+							<i class="gg-slider-button-prev"></i>
+							<i class="gg-slider-button-next"></i>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	{% if count(template.page.tiny_slider) %}
+		<section class="container what-you-looking-container">
+			<div class="cover-frame pt-3 pb-2 pt-md-4 bg-white">
+				<div class="cover-content-title px-4">
+					<h3 class="mb-0">{{ trans('visiosoft.theme.uzicani::field.what_you_are_looking_for') }}</h3>
+				</div>
+
+				<div class="swiper-container what-you-looking-slider d-flex align-items-center px-4">
+					<div class="swiper-wrapper">
+						{% for tinySlider in template.page.tiny_slider %}
+							<a href="{{ tinySlider.link }}" class="link-unstyled swiper-slide tiny-slider">
+								<div class="tiny-slider-bg" style="background-image: url('{{ tinySlider.background.url }}')"></div>
+								<p class="text-truncate">{{ tinySlider.title }}</p>
+								<p class="text-truncate">{{ tinySlider.description }}</p>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+	{% endif %}
+</div>
+{{ asset_script('visiosoft.theme.uzicani::js/slick.js') }}
+{{ asset_style('visiosoft.theme.uzicani::css/slick.css') }}
+<script>
+	let transSeeAll = "{{ trans('visiosoft.theme.uzicani::field.see_all') }}"
+let transSeeLess = "{{ trans('visiosoft.theme.uzicani::field.see_less') }}"
+</script>

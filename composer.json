@@ -1,0 +1,9 @@
+{
+    "name": "visiosoft/uzicani-theme",
+    "type": "streams-addon",
+    "autoload": {
+        "psr-4": {
+            "Visiosoft\\UzicaniTheme\\": "src/"
+        }
+    }
+}
