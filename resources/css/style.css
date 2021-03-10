@@ -1390,6 +1390,9 @@
 
 .w-210 {
   width: 210px;
+}
+
+.add-btn {
   height: 32px !important;
   margin-top: auto !important;
   margin-bottom: auto !important;
