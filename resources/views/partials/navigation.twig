@@ -169,8 +169,9 @@
 							{#                        <div class="row">#}
 							{#                            <div class="col-xl-9 row">#}
 								<div class="row"> {% for entrySubCategory in categoryEntry.getSubCategories(categoryEntry.id) %}
-									<div class="col-4 mt-3">
-										<h3>
+									{# {% set countAds = entries('advs').countAdsBySubCategoryId(entrySubCategory.id) %} #}
+									{# {% if (countAds>0) %} #}
+										<div class="col-4 mt-3"> <h3>
 											<a href="{{ url_route('adv_list_seo', [entrySubCategory.slug]) }}">
 												{{ entrySubCategory.name }}
 											</a>
@@ -186,6 +187,7 @@
 											{{ trans('visiosoft.theme.uzicani::field.view_all') }}
 										</a>
 									</div>
+									{# {% endif %} #}
 								{% endfor %}
 							</div>
 							{#                            <div class="col-3 category-main-img d-none d-xl-block">#}

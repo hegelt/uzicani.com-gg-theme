@@ -107,6 +107,7 @@ $('.categories-accordion').on('click', '.categories-accordion-item', function ()
                 url: '/class/getcats/'+ categoryId,
                 success: function (response) {
                     response.forEach(function (category, index) {
+                        // if(category.numAdvs>0){
                         if (!category.hasChild) {
                             clickedItem.siblings('.categories-accordion-panel').append(`
                                 <div>
@@ -126,7 +127,7 @@ $('.categories-accordion').on('click', '.categories-accordion-item', function ()
                                 </div>
                             `)
                         }
-
+                        // }
                     })
                     clickedItem.parent().addClass('expand').siblings().removeClass('expand')
                         .children('.categories-accordion-panel').hide()
