@@ -6,7 +6,15 @@
 			{% set footerLinks = links(menu.slug.value).get() %}
 			{% if footerLinks %}
 				<div class="col-3 mb-4">
-					<h2>{{ menu.name }}</h2>
+					{% if (setting_value('visiosoft.theme.uzicani::link_footer_title')) %}
+						<h2>
+							<a href="{{ footerLinks|last.url }}">{{ menu.name }}</a>
+						</h2>
+					{% else %}
+						<h2>
+							{{ menu.name }}
+						</h2>
+					{% endif %}
 					<ul>
 						{% for link in footerLinks %}
 							<li>

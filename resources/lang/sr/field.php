@@ -7,9 +7,9 @@ return [
     'last_48_hours' => 'Последњих 48 сати',
     'secure_e_commerce_ads' => 'Сигурни огласи за е-трговину',
     'sell' => 'Продај',
-    'see_all' => 'Видети све',
+    'see_all' => 'Погледај све',
     'categories' => 'Категорије',
-    'header_search_input_placeholder' => 'Нека вам оно што вам падне на памет дође на врата',
+    'header_search_input_placeholder' => 'Све што пожелите нек Вам дође на врата',
     'find' => 'Пронађи',
     'my_account' => 'Мој налог',
     'profile' => 'Профил',
@@ -25,8 +25,8 @@ return [
     'our_choices_for_you' => 'Наши избори за вас',
     'what_you_are_looking_for' => 'Шта тражиш',
     'operation_guide' => 'Водич за употребу',
-    'popular_pages' => 'Популар Пагес',
+    'popular_pages' => 'Популарне Стране',
     'follow_us' => 'Пратите нас',
     'copyright' => 'Ауторско право',
-    'see_less' => 'Погледајте мање',
+    'see_less' => 'Погледајте мање'
 ];

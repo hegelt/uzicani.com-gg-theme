@@ -92,5 +92,29 @@ return [
         "config" => [
             "default_value" => '© Copyright 2021 uzicani.com - powered by Hegelt',
         ],
-    ]
+    ],
+    "view_all_cats_show" => [
+        'type' => 'anomaly.field_type.boolean',
+        "config" => [
+            "default_value" => 1,
+        ]
+    ],
+    "view_all_cats_text" => [
+        "type"   => "anomaly.field_type.text",
+        "config" => [
+            "default_value" => 'Погледај све категорије',
+        ],
+    ],
+    "view_all_cats_url" => [
+        "type"   => "anomaly.field_type.url",
+        "config" => [
+            "default_value" => '/all-cats'
+        ]
+    ],
+    "link_footer_title" => [
+        'type' => 'anomaly.field_type.boolean',
+        "config" => [
+            "default_value" => 1,
+        ]
+    ],
 ];

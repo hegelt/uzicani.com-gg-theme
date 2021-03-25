@@ -51,5 +51,17 @@ return [
     ],
     "copyright_text_footer" => [
         "name" => "Copyright Текст у подножју"
-    ]
+    ],
+    "view_all_cats_text" => [
+        "name" => "Погледај све категорије"
+    ],
+    "view_all_cats_url" => [
+        "name" => "УРЛ за погледај све категорија"
+    ],
+    "view_all_cats_show" => [
+        "name" => "Прикажи погледај све категорије "
+    ],
+    "link_footer_title" => [
+        "name" => "Линкуј последњи линк у фоотер на Наслов"
+    ],
 ];
