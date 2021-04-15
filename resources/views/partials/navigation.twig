@@ -88,7 +88,7 @@
 			{% endif %}
 			<a class="flex-fill" href="{{ url('/') }}">
 				{% set ggLogo = setting_value('visiosoft.theme.uzicani::logo') %}
-				{% set ggLogo = ggLogo ? file(ggLogo).url : img('visiosoft.theme.uzicani::images/gg-logo.svg').url %}
+				{% set ggLogo = ggLogo ? file(ggLogo).make.url : img('visiosoft.theme.uzicani::images/gg-logo.svg').url %}
 				<img src="{{ ggLogo }}" class="mr-lg-4" alt="header logo">
 			</a>
 		</div>
