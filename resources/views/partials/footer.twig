@@ -1,4 +1,4 @@
-<footer class="container {{ setting_value('visiosoft.theme.gg::bottom_menu') ? 'mb-5' : '' }}">
+<footer class="container {{ setting_value('visiosoft.theme.uzicani::bottom_menu') ? 'mb-5' : '' }}">
 	<div class="row footer-links">
 
 		{% set menus = entries('navigation', 'menus').where('slug', '!=', 'horizontal_sub_menu').get() %}
@@ -110,12 +110,12 @@
 		</div>
 	</div>
 </footer>
-{% if setting_value('visiosoft.theme.gg::bottom_menu') %}
+{% if setting_value('visiosoft.theme.uzicani::bottom_menu') %}
 	<ul class="footer-mobile d-flex justify-content-center align-items-center d-sm-none">
 		<li>
 			<a href="{{ url('/') }}" class="d-flex flex-column pt-3 pb-1">
 				<i class="fa fa-bars fa-2x"></i>
-				{{ trans('visiosoft.theme.gg::button.categories.name') }}
+				{{ trans('visiosoft.theme.uzicani::button.categories.name') }}
 			</a>
 		</li>
 		{% set pages = links(entries('navigation', 'menus').where('slug', 'horizontal_sub_menu').first().slug.value).get() %}
