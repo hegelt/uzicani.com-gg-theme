@@ -232,7 +232,7 @@
 				</a>
 			</div>
 		{% endif %}
-		{% set pages = links(entries('navigation', 'menus').where('slug', 'horizontal_sub_menu').first().slug.value).get() %}
+		{# {% set pages = links(entries('navigation', 'menus').where('slug', 'horizontal_sub_menu').first().slug.value).get() %} 
 		<div class="px-2 px-xl-3 d-flex align-items-center ml-auto small">
 			{% for menu in pages %}
 				<a href="{{ menu.url }}" class="text-dark px-2">
@@ -240,6 +240,7 @@
 				</a>
 			{% endfor %}
 		</div>
+		#}
 	</div>
 </nav>
 <script>
