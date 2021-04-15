@@ -1,11 +1,11 @@
-<footer class="container">
-	<div class="row footer-links d-none d-md-flex">
+<footer class="container {{ setting_value('visiosoft.theme.gg::bottom_menu') ? 'mb-5' : '' }}">
+	<div class="row footer-links">
 
-		{% set menus = entries('navigation', 'menus').get() %}
+		{% set menus = entries('navigation', 'menus').where('slug', '!=', 'horizontal_sub_menu').get() %}
 		{% for menu in menus %}
 			{% set footerLinks = links(menu.slug.value).get() %}
 			{% if footerLinks %}
-				<div class="col-3 mb-4">
+				<div class="col-6 col-md-3 mb-4">
 					{% if (setting_value('visiosoft.theme.uzicani::link_footer_title')) %}
 						<h2>
 							<a href="{{ footerLinks|last.url }}">{{ menu.name }}</a>
@@ -93,7 +93,7 @@
 			</div>
 		</div>
 	</div>
-	<hr>
+	<hr class="mb-0">
 	<div class="copy-write-container d-flex justify-content-center justify-content-md-between align-items-center">
 		<p>{{ setting_value('visiosoft.theme.uzicani::copyright_text_footer') }}</p>
 		<div class="btn-group dropup d-none d-md-inline-flex">
@@ -110,3 +110,22 @@
 		</div>
 	</div>
 </footer>
+{% if setting_value('visiosoft.theme.gg::bottom_menu') %}
+	<ul class="footer-mobile d-flex justify-content-center align-items-center d-sm-none">
+		<li>
+			<a href="{{ url('/') }}" class="d-flex flex-column pt-3 pb-1">
+				<i class="fa fa-bars fa-2x"></i>
+				{{ trans('visiosoft.theme.gg::button.categories.name') }}
+			</a>
+		</li>
+		{% set pages = links(entries('navigation', 'menus').where('slug', 'horizontal_sub_menu').first().slug.value).get() %}
+		<li>
+			{% for menu in pages %}
+				<a href="{{ menu.url }}" class="text-dark px-2 d-flex flex-column pt-3 pb-1">
+					<i class="{{ menu.class }} fa-2x"></i>
+					{{ menu.title }}
+				</a>
+			{% endfor %}
+		</li>
+	</ul>
+{% endif %}

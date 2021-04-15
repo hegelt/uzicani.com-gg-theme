@@ -7,8 +7,8 @@
 					<div class="my-slides gg-fade w-100 h-100">
 						<a href="{{ homepageBanner.link }}">
 							<picture>
-								<source class="w-100 h-100" media="(min-width: 768px)" srcset="{{ homepageBanner.large_image.url }}">
-								<img class="w-100 h-100" src="{{ homepageBanner.medium_image.url }}">
+								<source class="w-100 h-100" media="(min-width: 768px)" srcset="{{ homepageBanner.large_image.make.url }}">
+								<img class="w-100 h-100" src="{{ homepageBanner.medium_image.make.url }}">
 							</picture>
 						</a>
 					</div>
@@ -28,17 +28,27 @@
 
 			<div class="slider-bullet-container d-none d-md-flex justify-content-center align-items-center bg-white">
 				{% for homepageBanner in template.page.homepage_banner %}
-					<div class="gg-slider-thumbnail" style="background-image: url('{{ homepageBanner.thumbnail_image.url }}');"></div>
+					<div class="gg-slider-thumbnail" style="background-image: url('{{ homepageBanner.thumbnail_image.make.url }}');"></div>
 				{% endfor %}
 			</div>
 		</div>
 	</section>
+	{% if setting_value('visiosoft.theme.gg::bottom_menu') %}
+		<div class="left-categories-section mx-0">
+			<div class="col-12 p-0 m-0">
+				{% set main_categories = getCategoriesLevel2() %}
+				{% for main_category in main_categories.maincats %}
+					{% include "visiosoft.theme.base::partials/categories-mobile" %}
+				{% endfor %}
+			</div>
+		</div>
+	{% endif %}
 
 	<section class="container new-banner-area">
 		<div class="articles d-flex overflow-auto">
 			{% for showcase in template.page.showcase %}
 				<a href="{{ showcase.link }}" class="link-unstyled article position-relative overflow-hidden">
-					<div class="article-bg h-100" style="background-image: url('{{ showcase.background.url }}')">
+					<div class="article-bg h-100" style="background-image: url('{{ showcase.background.make.url }}')">
 						<p>{{ showcase.title }}</p>
 					</div>
 					<div class="article-shadow position-absolute w-100 h-100 d-flex align-items-center justify-content-center">
@@ -111,8 +121,7 @@
 										<a href="{{ url_route('adv_detail', [catAdv.id]) }}" class="link-unstyled swiper-slide deal-slider-item">
 											<div class="deal-img" style="background-image: url('{{ catAdv.cover_photo }}')"></div>
 											<p class="deal-name">{{ catAdv.name }}</p>
-											<p class="deal-price">{{ catAdv.price }}
-												{{ catAdv.currency }}</p>
+											<p class="deal-price">{{ currency_format(catAdv.price,catAdv.currency) }}</p>
 											{#                                    <div class="deal-delivery d-flex">#}
 										{#                                        <img src="images/delivery.svg" class="mr-2 d-none d-md-block" alt="truck icon">#}
 											{#                                        <p>Free - Same Day Shipping</p>#}
@@ -130,7 +139,7 @@
 		</div>
 	</section>
 
-	{% if count(template.page.tiny_slider) %}
+	{% if template.page.tiny_slider and count(template.page.tiny_slider) %}
 		<section class="container what-you-looking-container">
 			<div class="cover-frame pt-3 pb-2 pt-md-4 bg-white">
 				<div class="cover-content-title px-4">
@@ -141,7 +150,7 @@
 					<div class="swiper-wrapper">
 						{% for tinySlider in template.page.tiny_slider %}
 							<a href="{{ tinySlider.link }}" class="link-unstyled swiper-slide tiny-slider">
-								<div class="tiny-slider-bg" style="background-image: url('{{ tinySlider.background.url }}')"></div>
+								<div class="tiny-slider-bg" style="background-image: url('{{ tinySlider.background.make.url }}')"></div>
 								<p class="text-truncate">{{ tinySlider.title }}</p>
 								<p class="text-truncate">{{ tinySlider.description }}</p>
 							</a>

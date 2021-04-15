@@ -54,5 +54,17 @@ return [
     ],
     "copyright_text_footer" => [
         "name" => "Copyright Text in Footer"
+    ],
+    "horizontal_menu_is_column" => [
+        "name" => "Show Subcategories Column in Horizontal Menu"
+    ],
+    'about_button_to_top' => [
+        'name' => 'Show \'About\' Button To Top Horizontal Menu'
+    ],
+    'link_for_top_about' => [
+        'name' => 'Link For \'About\' Button To Top Horizontal Menu'
+    ],
+    'bottom_menu' => [
+        'name' => 'Move Menu to Bottom in Mobile View'
     ]
 ];

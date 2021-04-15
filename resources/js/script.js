@@ -161,7 +161,7 @@ $('.category-list a').click(function () { // Show category's related products
                                 <div class="deal-img"
                                      style="background-image: url('${adv.cover_photo}')"></div>
                                 <p class="deal-name">${adv.name}</p>
-                                <p class="deal-price">${adv.price} ${adv.currency}</p>
+                                <p class="deal-price">${adv.currency_price}</p>
                             </a>
                         `)
                     })
@@ -246,3 +246,6 @@ $(document).ready(function(){
     });
 });
 /* End Swiper */
+$('.search-nav-btn').on('click',function () {
+    $('input[name=keyword]').focus()
+})

@@ -14,77 +14,79 @@
 	</div>
 	<div class="d-flex flex-wrap flex-lg-nowrap align-items-center mb-lg-3 pt-2 pt-md-4 pt-lg-0">
 		<div class="header-logo d-flex align-items-center">
-			<div class="flex-shrink-0">
-				<img class="d-lg-none mr-2 mr-md-5 mobile-menu-toggler" src="{{ img('visiosoft.theme.uzicani::images/brg-menu.svg').url }}" alt="burger menu icon">
-				<div class="styled-mobile-menu position-fixed">
-					<div class="small-horizontal-rule"></div>
-					<div class="top-wrapper px-2 d-flex justify-content-between align-items-center mb-2">
-						<p>{{ trans('visiosoft.theme.uzicani::field.menu') }}</p>
-						<img src="{{ img('visiosoft.theme.uzicani::images/close.svg').url }}" alt="close button">
-					</div>
-					<div
-						class="scroll-container">
-						{#
-						<div class="mobile-menu">
-							<div class="mobile-menu-heading d-flex justify-content-between align-items-center">
-								<p>{{ trans('visiosoft.theme.uzicani::field.quick_browse') }}</p>
-								<img src="{{ img('visiosoft.theme.uzicani::images/download.svg').url }}" alt="arrow">
-							</div>
-							<div class="mobile-menu-panel">
-								<div class="mobile-menu-list">
-									<a href="{{ url_route('visiosoft.module.advs::list') }}?sort_by=popular" class="link-unstyled d-flex align-items-center">
-										<img src="{{ img('visiosoft.theme.uzicani::images/popular.svg').url }}" alt="popular">
-										<p>{{ trans('visiosoft.theme.uzicani::field.popular_ads') }}</p>
-									</a>
-									<a href="{{ url_route('visiosoft.module.advs::list') }}?date=two_days" class="link-unstyled d-flex align-items-center">
-										<img src="{{ img('visiosoft.theme.uzicani::images/clock.svg').url }}" alt="last 24 hours">
-										<p>{{ trans('visiosoft.theme.uzicani::field.last_48_hours') }}</p>
-									</a>
-									<a href="{{ url_route('visiosoft.module.advs::list') }}?get_ads=true" class="link-unstyled d-flex align-items-center">
-										<img src="{{ img('visiosoft.theme.uzicani::images/shield.svg').url }}" alt="secure">
-										<p>{{ trans('visiosoft.theme.uzicani::field.secure_e_commerce_ads') }}</p>
-									</a>
-									<a href="{{ url_route('advs::create_adv') }}" class="link-unstyled d-flex align-items-center">
-										<img src="{{ img('visiosoft.theme.uzicani::images/speaker.svg').url }}" alt="sell">
-										<p>{{ trans('visiosoft.theme.uzicani::field.sell') }}</p>
-									</a>
-								</div>
-								<div class="quick-browse-toggle-btn d-flex justify-content-between align-items-center">
-									<button class="border-0 px-0">{{ trans('visiosoft.theme.uzicani::field.see_all') }}</button>
-									<img src="{{ img('visiosoft.theme.uzicani::images/download.svg').url }}" alt="arrow">
-								</div>
-							</div>
+			{% if not setting_value('visiosoft.theme.gg::bottom_menu') %}
+				<div class="flex-shrink-0">
+					<img class="d-lg-none mr-2 mr-md-5 mobile-menu-toggler" src="{{ img('visiosoft.theme.uzicani::images/brg-menu.svg').url }}" alt="burger menu icon">
+					<div class="styled-mobile-menu position-fixed">
+						<div class="small-horizontal-rule"></div>
+						<div class="top-wrapper px-2 d-flex justify-content-between align-items-center mb-2">
+							<p>{{ trans('visiosoft.theme.uzicani::field.menu') }}</p>
+							<img src="{{ img('visiosoft.theme.uzicani::images/close.svg').url }}" alt="close button">
 						</div>
-						
-						
-																		#}
-						<div class="categories-wrapper">
-							<div class="categories-wrapper-title d-flex justify-content-between align-items-center">
-								<p>{{ trans('visiosoft.theme.uzicani::field.categories') }}</p>
-							</div>
-							<div class="categories-accordion">
-								{% set mainCategories = entries('cats', 'category').getMainCats() %}
-								{% for category in mainCategories %}
-									<div>
-										{% if category.hasChild %}
-											<div id="cat{{ category.id }}" class="d-flex align-items-center justify-content-between categories-accordion-item">
-												<p class="text-truncate">{{ category.name }}</p>
-												<img src="{{ img('visiosoft.theme.uzicani::images/download.svg').url }}" alt="arrow">
-											</div>
-										{% else %}
-											<a href="{{ url_route('adv_list_seo', [category.slug]) }}" class="link-unstyled d-flex align-items-center justify-content-between categories-accordion-item">
-												<p class="text-truncate">{{ category.name }}</p>
-											</a>
-										{% endif %}
-										<div class="categories-accordion-panel"></div>
-									</div>
-								{% endfor %}
+						<div
+							class="scroll-container">
+							{#
+																																																																																		<div class="mobile-menu">
+																																																																																			<div class="mobile-menu-heading d-flex justify-content-between align-items-center">
+																																																																																				<p>{{ trans('visiosoft.theme.uzicani::field.quick_browse') }}</p>
+																																																																																				<img src="{{ img('visiosoft.theme.uzicani::images/download.svg').url }}" alt="arrow">
+																																																																																			</div>
+																																																																																			<div class="mobile-menu-panel">
+																																																																																				<div class="mobile-menu-list">
+																																																																																					<a href="{{ url_route('visiosoft.module.advs::list') }}?sort_by=popular" class="link-unstyled d-flex align-items-center">
+																																																																																						<img src="{{ img('visiosoft.theme.uzicani::images/popular.svg').url }}" alt="popular">
+																																																																																						<p>{{ trans('visiosoft.theme.uzicani::field.popular_ads') }}</p>
+																																																																																					</a>
+																																																																																					<a href="{{ url_route('visiosoft.module.advs::list') }}?date=two_days" class="link-unstyled d-flex align-items-center">
+																																																																																						<img src="{{ img('visiosoft.theme.uzicani::images/clock.svg').url }}" alt="last 24 hours">
+																																																																																						<p>{{ trans('visiosoft.theme.uzicani::field.last_48_hours') }}</p>
+																																																																																					</a>
+																																																																																					<a href="{{ url_route('visiosoft.module.advs::list') }}?get_ads=true" class="link-unstyled d-flex align-items-center">
+																																																																																						<img src="{{ img('visiosoft.theme.uzicani::images/shield.svg').url }}" alt="secure">
+																																																																																						<p>{{ trans('visiosoft.theme.uzicani::field.secure_e_commerce_ads') }}</p>
+																																																																																					</a>
+																																																																																					<a href="{{ url_route('advs::create_adv') }}" class="link-unstyled d-flex align-items-center">
+																																																																																						<img src="{{ img('visiosoft.theme.uzicani::images/speaker.svg').url }}" alt="sell">
+																																																																																						<p>{{ trans('visiosoft.theme.uzicani::field.sell') }}</p>
+																																																																																					</a>
+																																																																																				</div>
+																																																																																				<div class="quick-browse-toggle-btn d-flex justify-content-between align-items-center">
+																																																																																					<button class="border-0 px-0">{{ trans('visiosoft.theme.uzicani::field.see_all') }}</button>
+																																																																																					<img src="{{ img('visiosoft.theme.uzicani::images/download.svg').url }}" alt="arrow">
+																																																																																				</div>
+																																																																																			</div>
+																																																																																		</div>
+																																																																																		
+																																																																																		
+																																																																																														#}
+							<div class="categories-wrapper">
+								<div class="categories-wrapper-title d-flex justify-content-between align-items-center">
+									<p>{{ trans('visiosoft.theme.uzicani::field.categories') }}</p>
+								</div>
+								<div class="categories-accordion">
+									{% set mainCategories = entries('cats', 'category').getMainCategories() %}
+									{% for category in mainCategories %}
+										<div>
+											{% if category.hasChild %}
+												<div id="cat{{ category.id }}" class="d-flex align-items-center justify-content-between categories-accordion-item">
+													<p class="text-truncate">{{ category.name }}</p>
+													<img src="{{ img('visiosoft.theme.uzicani::images/download.svg').url }}" alt="arrow">
+												</div>
+											{% else %}
+												<a href="{{ url_route('adv_list_seo', [category.slug]) }}" class="link-unstyled d-flex align-items-center justify-content-between categories-accordion-item">
+													<p class="text-truncate">{{ category.name }}</p>
+												</a>
+											{% endif %}
+											<div class="categories-accordion-panel"></div>
+										</div>
+									{% endfor %}
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<a class="flex-fill" href="/">
+			{% endif %}
+			<a class="flex-fill" href="{{ url('/') }}">
 				{% set ggLogo = setting_value('visiosoft.theme.uzicani::logo') %}
 				{% set ggLogo = ggLogo ? file(ggLogo).url : img('visiosoft.theme.uzicani::images/gg-logo.svg').url %}
 				<img src="{{ ggLogo }}" class="mr-lg-4" alt="header logo">
@@ -160,7 +162,8 @@
 				<p>{{ categoryEntry.name }}</p>
 				<div class="horizontal-menu-detail position-absolute">
 					<div class="px-5">
-						<div class="horizontal-menu-header d-flex align-items-center">
+						<div
+							class="horizontal-menu-header d-flex align-items-center">
 							{# <img src="{{ categoryEntry.icon.url }}" class=" mr-2" alt="basketball icon"> #}
 							<a href="{{ url_route('adv_list_seo', [categoryEntry.slug]) }}">
 								{{ categoryEntry.name }}
@@ -181,14 +184,14 @@
 										</h3>
 										<div class="overflow-hidden">
 											{% for subCategory in entrySubCategory.getSubCategories(entrySubCategory.id) %}
-												<a href="{{ url_route('adv_list_seo', [subCategory.slug]) }}">
+												<a class="{{ setting_value('visiosoft.theme.gg::horizontal_menu_is_column') ? 'w-100' : '' }}" href="{{ url_route('adv_list_seo', [subCategory.slug]) }}">
 													{{ subCategory.name }}
 												</a>
 											{% endfor %}
 										</div>
 										{# <a href="{{ url_route('adv_list_seo', [entrySubCategory.slug]) }}">
-											{{ trans('visiosoft.theme.uzicani::field.view_all') }}
-										</a> #}
+																																																																																																																									{{ trans('visiosoft.theme.uzicani::field.view_all') }}
+																																																																																																																								</a> #}
 									</div>
 									{# {% endif %} #}
 								{% endfor %}
@@ -229,6 +232,14 @@
 				</a>
 			</div>
 		{% endif %}
+		{% set pages = links(entries('navigation', 'menus').where('slug', 'horizontal_sub_menu').first().slug.value).get() %}
+		<div class="px-2 px-xl-3 d-flex align-items-center ml-auto small">
+			{% for menu in pages %}
+				<a href="{{ menu.url }}" class="text-dark px-2">
+					{{ menu.title }}
+				</a>
+			{% endfor %}
+		</div>
 	</div>
 </nav>
 <script>

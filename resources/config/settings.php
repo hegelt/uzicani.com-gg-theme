@@ -22,6 +22,12 @@ return [
             'handler' => 'Visiosoft\UzicaniTheme\SettingHandler\CategoriesOptions@handle'
         ],
     ],
+    "horizontal_menu_is_column" => [
+        'type' => 'anomaly.field_type.boolean',
+        'config' => [
+            'default_value' => false,
+        ]
+    ],
     "choices_tabs_categories" => [
         'type' => 'anomaly.field_type.checkboxes',
         'config' => [
@@ -117,4 +123,10 @@ return [
             "default_value" => 1,
         ]
     ],
+    'bottom_menu' => [
+        'type' => 'anomaly.field_type.boolean',
+        'config' => [
+            'default_value' => false,
+        ]
+    ]
 ];
