@@ -1,0 +1,22 @@
+{% set current_locale = entries('advs').getCurrentLocale() %}
+
+<div class="dropdown mr-2 my-2 my-lg-0 lang-dropdown d-block d-lg-none">
+    <button class="btn shadow-none dropdown-toggle pl-3 w-100 text-left" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+        <img src="{{ img('theme::images/flags/'~config('app.locale')~'.svg').url }}"
+             class="lang-flag">
+        <font>{{ current_locale }}</font>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+        {% for locale in config('streams::locales.enabled') %}
+            {% if locale != config('app.locale') %}
+                <a class="dropdown-item px-3" href="#" onclick="window.location = '?_setLang={{ locale }}&redirect={{ url_full() }}'">
+                    <img src="{{ img('theme::images/flags/'~locale~'.svg').url }}" class="lang-flag">
+                    {{ trans('streams::locale.' ~ locale ~ '.name') }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{{ asset_style('visiosoft.theme.base::css/flags.css',['min']) }}
