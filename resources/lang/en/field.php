@@ -29,5 +29,5 @@ return [
     'follow_us' => 'Follow Us',
     'copyright' => 'Copyright',
     'see_less' => 'See Less',
-    'about_us' => 'About Us',
+    'about_us' => 'About Us'
 ];
