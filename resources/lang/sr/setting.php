@@ -75,5 +75,17 @@ return [
     ],
     'bottom_menu' => [
         'name' => 'Премести мени на дно у Мобиле'
+    ],
+    'view_all_stores_show' => [
+        'name' => 'Prikazi Pogledaj sve prodavnice'
+    ],
+    'view_all_stores_text' => [
+        'name' => 'Tekst pogledaj sve prodavnice'
+    ],
+    'view_all_stores_url' => [
+        'name' => 'URL za pogledaj sve prodavnice'
+    ],
+    'menu_stores_caption' => [
+        'name' => 'Label za prodavnice u meniju'
     ]
 ];

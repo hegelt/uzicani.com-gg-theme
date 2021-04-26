@@ -128,5 +128,29 @@ return [
         'config' => [
             'default_value' => false,
         ]
+    ],
+    "view_all_stores_show" => [
+        'type' => 'anomaly.field_type.boolean',
+        "config" => [
+            "default_value" => 1,
+        ]
+    ],
+    "view_all_stores_text" => [
+        "type"   => "anomaly.field_type.text",
+        "config" => [
+            "default_value" => 'Pogledaj sve prodavnice',
+        ],
+    ],
+    "view_all_stores_url" => [
+        "type"   => "anomaly.field_type.url",
+        "config" => [
+            "default_value" => '/all-cats'
+        ]
+    ],
+    "menu_stores_caption" => [
+        "type"   => "anomaly.field_type.text",
+        "config" => [
+            "default_value" => 'Prodavnice'
+        ],
     ]
 ];
